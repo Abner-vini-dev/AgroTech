@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Conheça os usuários da FreshSense: produtores, logística, distribuição e instituições que atuam contra perdas alimentares.">
+  <title>FreshSense | Usuários</title>
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="stylesheet" href="../../assets/css/global.css">
+  <link rel="stylesheet" href="../../assets/css/components.css">
+  <link rel="stylesheet" href="./publico-alvo.css">
+</head>
+<body data-page="publico">
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
+
+  <header class="site-header" data-site-header>
+    <nav class="site-nav container" aria-label="Navegação principal">
+      <a class="brand" href="../../index.html"><span>Fresh</span>Sense</a>
+      <button class="nav-toggle" type="button" data-nav-toggle aria-label="Abrir menu" aria-expanded="false"><span aria-hidden="true">☰</span><span>Menu</span></button>
+      <ul class="nav-menu">
+        <li><a class="nav-link" data-nav-link="home" href="../../index.html">Início</a></li>
+        <li><a class="nav-link" data-nav-link="problema" href="../problema/index.html">Problema</a></li>
+        <li><a class="nav-link" data-nav-link="solucao" href="../solucao/index.html">Solução</a></li>
+        <li><a class="nav-link" data-nav-link="publico" href="./index.html">Usuários</a></li>
+        <li><a class="nav-link nav-cta" data-nav-link="contato" href="../contato/index.html">Fale Conosco</a></li>
+        <li><button class="theme-toggle" type="button" data-theme-toggle aria-label="Ativar modo escuro" aria-pressed="false">Modo escuro</button></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="conteudo">
+    <section class="page-hero users-hero">
+      <div class="container reveal">
+        <span class="eyebrow">Perfis de uso</span>
+        <h1>Uma solução para quem produz, transporta e distribui alimentos</h1>
+        <p class="lead-text">
+          A FreshSense adapta a informação ao papel de cada usuário, reduzindo ruído e acelerando
+          decisões no campo, na rota e no centro de distribuição.
+        </p>
+      </div>
+    </section>
+
+    <section class="section surface">
+      <div class="container">
+        <div class="section-title reveal">
+          <span class="tag">Usuários conectados</span>
+          <h2>Cada perfil recebe a informação que precisa para agir</h2>
+          <p>O sistema organiza dados técnicos em decisões práticas para a operação.</p>
+        </div>
+        <div class="persona-grid">
+          <article class="persona-card card reveal">
+            <div class="persona-img producer"></div>
+            <span class="tag">Origem</span>
+            <h3>Produtor e cooperativa</h3>
+            <p>Cadastram lote, faixa ideal, origem, sensor vinculado e condição antes do envio.</p>
+          </article>
+          <article class="persona-card card reveal">
+            <div class="persona-img driver"></div>
+            <span class="tag">Transporte</span>
+            <h3>Motorista e logística</h3>
+            <p>Recebem alertas objetivos, rota prioritária e checklist de ação corretiva.</p>
+          </article>
+          <article class="persona-card card reveal">
+            <div class="persona-img storage"></div>
+            <span class="tag">Distribuição</span>
+            <h3>Centro de distribuição</h3>
+            <p>Controlam chegada, armazenamento, prioridade de entrega e estabilidade do estoque.</p>
+          </article>
+          <article class="persona-card card reveal">
+            <div class="persona-img institution"></div>
+            <span class="tag">Impacto</span>
+            <h3>Instituições e famílias</h3>
+            <p>São beneficiadas por maior disponibilidade, qualidade e aproveitamento de alimentos.</p>
+          </article>
+          <article class="persona-card card reveal">
+            <div class="persona-img market"></div>
+            <span class="tag">Varejo</span>
+            <h3>Mercados e restaurantes</h3>
+            <p>Recebem lotes com histórico de qualidade e podem priorizar giro de produtos sensíveis.</p>
+          </article>
+          <article class="persona-card card reveal">
+            <div class="persona-img quality"></div>
+            <span class="tag">Qualidade</span>
+            <h3>Gestores de qualidade</h3>
+            <p>Acompanham conformidade, alertas resolvidos e evidências para auditoria operacional.</p>
+          </article>
+          <article class="persona-card card reveal">
+            <div class="persona-img social"></div>
+            <span class="tag">Social</span>
+            <h3>Instituições sociais</h3>
+            <p>Planejam recebimento e aproveitamento de doações com mais segurança e previsibilidade.</p>
+          </article>
+          <article class="persona-card card reveal persona-highlight">
+            <div class="persona-img integration"></div>
+            <span class="tag">Integração</span>
+            <h3>Uma visão compartilhada</h3>
+            <p>Todos os perfis trabalham com a mesma base de dados, evitando decisões isoladas e retrabalho.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container user-journey">
+        <div class="section-title reveal">
+          <span class="tag">Jornada por perfil</span>
+          <h2>Selecione um usuário para ver a decisão principal</h2>
+        </div>
+        <div class="journey-picker reveal" role="tablist" aria-label="Perfis de usuário">
+          <button id="profile-produtor" type="button" class="btn-soft active" role="tab" aria-selected="true" aria-controls="profile-result" data-user-profile="produtor">Produtor</button>
+          <button id="profile-logistica" type="button" class="btn-soft" role="tab" aria-selected="false" aria-controls="profile-result" data-user-profile="logistica">Logística</button>
+          <button id="profile-qualidade" type="button" class="btn-soft" role="tab" aria-selected="false" aria-controls="profile-result" data-user-profile="qualidade">Qualidade</button>
+          <button id="profile-instituicao" type="button" class="btn-soft" role="tab" aria-selected="false" aria-controls="profile-result" data-user-profile="instituicao">Instituição</button>
+        </div>
+        <article id="profile-result" class="journey-result card reveal" role="tabpanel" aria-live="polite" aria-labelledby="profile-produtor">
+          <span class="tag" data-profile-step>Cadastro do lote</span>
+          <h3 data-profile-title>Produtor acompanha a saída do alimento</h3>
+          <p data-profile-copy>Define faixa ideal, vincula sensor e garante que o lote saia com histórico ambiental claro.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section dark">
+      <div class="container">
+        <div class="section-title centered reveal">
+          <span class="tag">Fluxo de uso</span>
+          <h2>Da criação do lote ao relatório de impacto</h2>
+        </div>
+        <div class="flow-grid">
+          <article class="card reveal"><span class="tag">1</span><h3>Cadastrar lote</h3><p>Produto, origem, destino, faixa ideal e sensor vinculado.</p></article>
+          <article class="card reveal"><span class="tag">2</span><h3>Monitorar</h3><p>Leituras chegam ao painel e alimentam indicadores operacionais.</p></article>
+          <article class="card reveal"><span class="tag">3</span><h3>Corrigir</h3><p>Alertas orientam ações antes que o alimento se deteriore.</p></article>
+          <article class="card reveal"><span class="tag">4</span><h3>Analisar</h3><p>Relatórios mostram estabilidade, perdas evitadas e pontos críticos.</p></article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <strong>FreshSense • Monitoramento Agrotech</strong>
+      <span>Cadeia fria, rastreabilidade e decisão em tempo real</span>
+    </div>
+  </footer>
+
+  <button class="back-to-top" type="button" data-back-top aria-label="Voltar ao topo">↑</button>
+  <script src="../../assets/js/translations.js"></script>
+  <script src="../../assets/js/global.js"></script>
+  <script src="./publico-alvo.js"></script>
+</body>
+</html>
