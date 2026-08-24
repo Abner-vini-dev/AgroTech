@@ -1,2 +1,95 @@
 /* Fase 5 — camada React. Os estilos visuais da Fase 4 foram preservados. */
 .feature-option{min-height:240px}.feature-option.active{outline:2px solid currentColor}.feature-option code,.feature-callout code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}.risk-errors{min-height:1.4em}.history-item{display:flex;justify-content:space-between;gap:16px;align-items:center}.history-item>div{display:flex;flex-direction:column;gap:4px}.history-pill{font-weight:700}.nav-link[aria-current="page"]{font-weight:800}.nav-toggle{cursor:pointer}.theme-toggle{cursor:pointer}.two-column{display:grid;grid-template-columns:1fr 1fr;gap:40px}@media(max-width:800px){.two-column{grid-template-columns:1fr}}
+
+
+/* Fase 5 — Busca e filtros inteligentes */
+.smart-filter-panel{margin-bottom:24px}.smart-filter-grid{display:grid;grid-template-columns:2fr repeat(4,1fr);gap:14px;align-items:end}.smart-filter-summary{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:18px;padding-top:18px;border-top:1px solid var(--line)}.smart-filter-summary p{margin:0}.smart-filter-summary strong{color:var(--forest);font-size:1.35rem}.smart-results-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.smart-lot-card{display:grid;gap:18px}.smart-lot-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}.smart-lot-head h3{margin:10px 0 0}.smart-lot-info{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:0}.smart-lot-info div{padding:12px;border:1px solid var(--line);border-radius:14px;background:rgba(49,201,133,.05)}.smart-lot-info dt{font-size:.78rem;font-weight:900;text-transform:uppercase;color:var(--muted);letter-spacing:.04em}.smart-lot-info dd{margin:5px 0 0;font-weight:900;color:var(--ink)}.smart-empty-state{text-align:center;padding:42px 20px}.smart-empty-state .btn-soft{margin-top:12px}@media(max-width:1100px){.smart-filter-grid{grid-template-columns:repeat(2,1fr)}.smart-search-field{grid-column:1/-1}}@media(max-width:700px){.smart-filter-grid,.smart-results-grid,.smart-lot-info{grid-template-columns:1fr}.smart-filter-summary,.smart-lot-head{align-items:stretch;flex-direction:column}.smart-filter-summary .btn-soft{width:100%}}
+
+
+/* Melhorias de contraste e legibilidade — Busca + filtros */
+.clear-filters-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  min-height:46px;
+  padding:0 20px;
+  border:2px solid #8da19a;
+  background:transparent;
+  color:var(--ink);
+  font-weight:900;
+  box-shadow:none;
+}
+.clear-filters-btn:hover{
+  border-color:#31c985;
+  background:rgba(49,201,133,.12);
+  color:var(--ink);
+}
+.clear-filters-btn:focus-visible{
+  outline:3px solid #31c985;
+  outline-offset:3px;
+}
+.clear-filters-btn span{
+  font-size:1.15rem;
+  line-height:1;
+}
+
+.risk-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  min-width:112px;
+  justify-content:center;
+  padding:8px 12px;
+  border:2px solid transparent;
+  border-radius:999px;
+  font-weight:950;
+  letter-spacing:.01em;
+  box-shadow:0 4px 12px rgba(0,0,0,.12);
+}
+.risk-dot{
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  background:currentColor;
+  box-shadow:0 0 0 3px rgba(255,255,255,.22);
+}
+.risk-badge.risk-alto{
+  color:#fff;
+  background:#c62828;
+  border-color:#ef5350;
+}
+.risk-badge.risk-medio{
+  color:#241800;
+  background:#ffb300;
+  border-color:#ffd54f;
+}
+.risk-badge.risk-baixo{
+  color:#fff;
+  background:#16833f;
+  border-color:#43b968;
+}
+
+/* Uma faixa lateral reforça o risco mesmo sem depender só da cor do selo. */
+.smart-lot-card:has(.risk-alto){border-left:5px solid #ef5350}
+.smart-lot-card:has(.risk-medio){border-left:5px solid #ffb300}
+.smart-lot-card:has(.risk-baixo){border-left:5px solid #43b968}
+
+html[data-theme="dark"] .clear-filters-btn{
+  border-color:#91aaa0;
+  background:#172b23;
+  color:#f4fff8;
+}
+html[data-theme="dark"] .clear-filters-btn:hover{
+  border-color:#50df9e;
+  background:#214435;
+}
+html[data-theme="dark"] .risk-badge.risk-medio{
+  color:#1c1300;
+  background:#ffc233;
+  border-color:#ffe082;
+}
+
+@media(max-width:700px){
+  .risk-badge{align-self:flex-start}
+}

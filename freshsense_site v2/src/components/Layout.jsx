@@ -6,7 +6,7 @@ const links = [
   ['/solucao', 'Solução'],
   ['/publico-alvo', 'Usuários'],
   ['/contato', 'Fale Conosco'],
-  ['/fase5', 'Fase 5'],
+  ['/buscar-lotes', 'Buscar Lotes'],
 ];
 
 export function Layout({ page, children }) {
@@ -28,6 +28,26 @@ export function Layout({ page, children }) {
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, []);
+
+  useEffect(() => {
+    const updateScrollProgress = () => {
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = maxScroll > 0 ? window.scrollY / maxScroll : 0;
+      document.querySelector('.scroll-progress')?.style.setProperty(
+        'transform',
+        `scaleX(${Math.min(Math.max(progress, 0), 1)})`
+      );
+    };
+
+    window.addEventListener('scroll', updateScrollProgress, { passive: true });
+    window.addEventListener('resize', updateScrollProgress);
+    requestAnimationFrame(updateScrollProgress);
+
+    return () => {
+      window.removeEventListener('scroll', updateScrollProgress);
+      window.removeEventListener('resize', updateScrollProgress);
+    };
+  }, [page]);
 
   return (
     <>

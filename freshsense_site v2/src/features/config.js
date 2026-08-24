@@ -1,6 +1,6 @@
 // FASE 5 — escolha uma única opção quando o grupo decidir a nova funcionalidade.
 // Deixe como null enquanto o grupo ainda estiver decidindo.
-export const ACTIVE_FEATURE = null;
+export const ACTIVE_FEATURE = 'filtros';
 
 export const FEATURE_OPTIONS = [
   {
