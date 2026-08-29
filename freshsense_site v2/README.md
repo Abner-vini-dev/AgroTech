@@ -15,22 +15,34 @@ npm.cmd run dev
 npm.cmd run check
 ```
 
-O comando `check` executa os testes automatizados e o build de produção.
+O comando `check` executa lint, verificação de formatação, testes unitários,
+testes de interface e o build de produção.
+
+Comandos individuais:
+
+```cmd
+npm.cmd run lint
+npm.cmd run format
+npm.cmd run test:unit
+npm.cmd run test:ui
+npm.cmd run build
+```
 
 ## Estrutura
 
-- `src/pages`: uma pasta por página, reunindo JSX, CSS, componentes e lógica exclusivos daquela tela.
-- `src/site`: tudo que é aplicado ao site inteiro.
-  - `start.jsx`: ponto de início do React.
-  - `App.jsx`, `routes.jsx` e `useRouter.js`: composição, rotas e navegação.
-  - `layout`: cabeçalho, rodapé, menu e busca global.
-  - `ui`: componentes visuais reutilizados por várias páginas.
-  - `translations`: idiomas e dicionários PT/EN/ES.
-  - `data`: dados compartilhados.
-  - `storage`: preferências salvas no navegador.
-  - `styles`: base e estilos globais.
-- `tests`: testes automatizados da lógica de domínio.
-
-
+- `src/main.jsx`, `src/App.jsx` e `src/routes.jsx`: inicialização, composição e
+  cadastro das rotas.
+- `src/componentes`: componentes globais ou utilizados por mais de uma página.
+- `src/paginas`: uma pasta por página, reunindo JSX, um CSS local e módulos exclusivos.
+  - `componentes`: componentes usados somente pela página.
+  - `modelo`, `dados` e `hooks`: criados apenas quando a página realmente precisa.
+  - `<pagina>.css`: arquivo único mantido diretamente na pasta da página e
+    organizado internamente por seções nas telas extensas.
+- `src/dados`, `src/hooks`, `src/traducoes` e `src/utilitarios`: recursos globais
+  com responsabilidades específicas.
+- `src/estilos`: estilos globais e ordem da cascata.
 
 Todo o comportamento da aplicação está em componentes, hooks e contextos React dentro de `src`.
+
+A descrição completa das responsabilidades e das rotas está em
+[`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).

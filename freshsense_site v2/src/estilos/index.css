@@ -1,0 +1,11 @@
+@import "./base.css";
+@import "./components.css";
+@import "../componentes/copilot/site-copilot.css";
+@import "../paginas/inicio/inicio.css";
+@import "../paginas/problema/problema.css";
+@import "../paginas/solucao/solucao.css";
+@import "../paginas/usuarios/usuarios.css";
+@import "../paginas/contato/contato.css";
+@import "../paginas/monitoramento/monitoramento.css";
+@import "../paginas/buscar-lotes/buscar-lotes.css";
+@import "../paginas/simulador/simulador.css";

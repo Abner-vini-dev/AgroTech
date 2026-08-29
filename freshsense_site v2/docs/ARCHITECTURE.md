@@ -2,36 +2,73 @@
 
 ## Princípios
 
-1. Páginas apenas compõem seções e funcionalidades.
-2. Cada rota possui uma pasta própria em `src/pages`, com seus componentes, estilos e lógica exclusiva.
-3. Cálculos e validações ficam em módulos JavaScript puros e testáveis.
-4. Componentes compartilhados não dependem de uma página específica.
-5. Todo texto traduzível é renderizado pelo contexto React de internacionalização.
-6. Estilos globais permanecem em `src/site/styles`; estilos exclusivos ficam junto da página proprietária e são carregados pela entrada global na ordem original.
+1. Cada rota possui uma pasta própria em `src/paginas`.
+2. Componentes exclusivos permanecem na página; componentes reutilizados ficam em `src/componentes`.
+3. Regras, dados e hooks exclusivos só recebem pastas próprias quando a página realmente precisa deles.
+4. O CSS de cada página fica diretamente na pasta proprietária, preservando a ordem da cascata.
+5. Dados e utilitários globais não dependem de páginas.
+6. Não são criadas pastas vazias ou camadas genéricas sem responsabilidade real.
 
 ## Fluxo principal
 
-`src/site/start.jsx` inicializa o React, os estilos e o contexto de idiomas. `src/site/App.jsx` seleciona a página por meio de `useRouter`. `routes.jsx` mantém em um único lugar as rotas, os títulos, a navegação e os dados de busca. O `AppLayout` fornece navegação, busca, tema, rodapé e comportamentos globais. Cada página combina seus módulos exclusivos com os recursos globais de `src/site`.
+`src/main.jsx` inicializa o React, o contexto de idiomas e os estilos globais.
+`src/App.jsx` combina a rota atual com o `AppLayout`. `src/routes.jsx` mantém o
+cadastro único de rotas, títulos, navegação e busca. Cada página compõe somente
+seus módulos locais e os componentes compartilhados necessários.
 
-## Organização
+## Estrutura de `src`
 
-- `pages`: uma pasta por tela, com `Page.jsx`, CSS e módulos exclusivos separados por responsabilidade.
-- `site`: inicialização, rotas, layout, interface reutilizável, traduções, dados, armazenamento e estilos globais.
+- `App.jsx`, `main.jsx` e `routes.jsx`: entrada, composição e rotas.
+- `componentes`: layout, busca, seletor de idioma, assistente global e componentes visuais reutilizados.
+- `dados`: dados compartilhados entre funcionalidades.
+- `hooks`: hooks globais realmente reutilizáveis.
+- `paginas`: uma pasta por página, com seus arquivos exclusivos.
+- `estilos`: estilos globais e ordem de carregamento da cascata.
+- `traducoes`: contexto e dicionários de idioma.
+- `utilitarios`: funções auxiliares compartilhadas.
 
-## Funcionalidades
+### Páginas e rotas
 
-- `risk`: cálculo e simulador de risco alimentar.
-- `priority`: cálculo e simulador de prioridade operacional.
-- `dashboard`: abas, lotes, sensores, alertas e relatórios.
-- `monitoring`: pesquisa, filtros e favoritos persistentes.
-- `contact`: formulário e validação.
-- `causes`: exploração interativa das causas do problema.
-- `profiles`: jornada interativa por perfil de usuário.
+| Página                | Rota            | Pasta                        | Entrada                 |
+| --------------------- | --------------- | ---------------------------- | ----------------------- |
+| Início                | `/`             | `src/paginas/inicio`         | `InicioPage.jsx`        |
+| Problema              | `/problema`     | `src/paginas/problema`       | `ProblemaPage.jsx`      |
+| Solução               | `/solucao`      | `src/paginas/solucao`        | `SolucaoPage.jsx`       |
+| Simulador de risco    | `/simulador`    | `src/paginas/simulador`      | `SimuladorPage.jsx`     |
+| Usuários              | `/publico-alvo` | `src/paginas/usuarios`       | `UsuariosPage.jsx`      |
+| Fale Conosco          | `/contato`      | `src/paginas/contato`        | `ContatoPage.jsx`       |
+| Monitoramento         | `/fase5`        | `src/paginas/monitoramento`  | `MonitoramentoPage.jsx` |
+| Buscar lotes          | `/buscar-lotes` | `src/paginas/buscar-lotes`   | `BuscarLotesPage.jsx`   |
+| Página não encontrada | rota inválida   | `src/paginas/nao-encontrada` | `NaoEncontradaPage.jsx` |
+
+### Responsabilidades locais
+
+- `*Page.jsx`: composição principal.
+- `<pagina>.css`: arquivo único dos estilos locais.
+- `componentes/`: componentes usados apenas naquela página.
+- `modelo/`: regras e cálculos exclusivos.
+- `dados/`: conteúdo estático exclusivo.
+- `hooks/`: estado e efeitos exclusivos.
+
+Os arquivos CSS extensos são organizados por seções comentadas dentro do arquivo
+único da página. Isso evita subpastas `estilos`, parciais redundantes e mudanças
+acidentais na ordem da cascata.
+
+## Componentes compartilhados
+
+- `AppLayout`: estrutura global, cabeçalho, rodapé e comportamentos do site.
+- `SiteSearch`: busca global pelas páginas.
+- `LanguageSwitcher`: seleção de idioma.
+- `PageHero`: cabeçalho reutilizado pelas páginas internas.
+- `componentes/copilot`: interface, eventos e modelo do assistente global.
+
+`LiveReading` permanece em `paginas/inicio/componentes`, pois é usado somente pela
+página Início.
 
 ## Manutenção
 
-- Uma nova regra de negócio deve ser criada fora do JSX e acompanhada por teste.
-- Uma nova página deve ser registrada em `src/site/routes.jsx`.
-- Um componente usado por mais de uma página deve ir para `src/site/ui`; componentes exclusivos permanecem na pasta da página.
-- Não manipular conteúdo com `innerHTML`, `querySelector` ou scripts externos quando o estado React puder representar a interação.
-- Antes de entregar uma alteração, executar `npm.cmd run check`.
+- Registrar novas páginas em `src/routes.jsx`.
+- Mover um componente para `src/componentes` somente quando houver uso global ou por mais de uma página.
+- Manter regras de negócio fora do JSX quando tiverem estado ou cálculos próprios.
+- Não criar `servicos`, `utilitarios`, `hooks`, `modelo` ou `dados` sem arquivos que pertençam claramente à responsabilidade.
+- Antes de entregar alterações, executar `npm.cmd run check`.
