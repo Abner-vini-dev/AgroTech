@@ -1,5 +1,6 @@
 import { BuscarLotesPage } from "./paginas/buscar-lotes/BuscarLotesPage";
 import { ContatoPage } from "./paginas/contato/ContatoPage";
+import { DestinacaoPage } from "./paginas/destinacao/DestinacaoPage";
 import { InicioPage } from "./paginas/inicio/InicioPage";
 import { MonitoramentoPage } from "./paginas/monitoramento/MonitoramentoPage";
 import { ProblemaPage } from "./paginas/problema/ProblemaPage";
@@ -53,6 +54,16 @@ export const appRoutes = [
       "Uma visão compartilhada para produção, logística, qualidade e distribuição.",
     searchTerms: "público produtor logística distribuição cooperativa",
     Component: UsuariosPage,
+  },
+  {
+    path: "/destinacao",
+    label: "Destinação",
+    title: "Destinação de lotes",
+    description:
+      "Planeje doações, vendas prioritárias e transferências para reduzir perdas.",
+    searchTerms:
+      "destinação doação lote venda desconto transferência desperdício instituição",
+    Component: DestinacaoPage,
   },
   {
     path: "/contato",

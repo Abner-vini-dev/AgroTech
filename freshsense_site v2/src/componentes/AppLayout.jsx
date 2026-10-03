@@ -124,6 +124,17 @@ export function AppLayout({ currentPath, routes, children }) {
             </li>
           </ul>
         </nav>
+        {currentPath === "/" && (
+          <a
+            className="pitch-video-link"
+            href="https://youtu.be/HaJsiKlaZM0"
+            target="_blank"
+            rel="noreferrer"
+            onClick={() => setMenuOpen(false)}
+          >
+            Pitch Video
+          </a>
+        )}
       </header>
       <main id="conteudo">{children}</main>
       <footer className="footer">

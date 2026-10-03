@@ -6,7 +6,7 @@ function SelectField({ id, label, value, onChange, children, full = false }) {
   return (
     <div className={`form-field ${full ? "full" : ""}`}>
       <label htmlFor={id}>{label}</label>
-      <select id={id} value={value} onChange={onChange}>
+      <select id={id} name={id} value={value} onChange={onChange}>
         {children}
       </select>
     </div>
@@ -22,7 +22,7 @@ export function ContactForm() {
     const next = { ...data, [key]: value };
     setData(next);
     setStatus({ type: "", message: "" });
-    if (errors[key])
+    if (["nome", "email", "mensagem"].includes(key))
       setErrors((current) => ({
         ...current,
         [key]: validateContact(next)[key] ?? "",
@@ -50,7 +50,7 @@ export function ContactForm() {
     setStatus({
       type: "success",
       message:
-        "Solicitação registrada. A equipe FreshSense entrará em contato para entender os próximos passos.",
+        "Mensagem validada com sucesso. A equipe FreshSense recebeu sua solicitação.",
     });
     setData(emptyContactForm);
     setErrors({});
@@ -61,31 +61,25 @@ export function ContactForm() {
       <section className="section surface">
         <div className="container contact-layout">
           <aside className="contact-panel card reveal">
-            <span className="tag">Conversa consultiva</span>
-            <h2>Comece pelo desafio mais relevante da sua operação</h2>
+            <span className="tag">Atendimento FreshSense</span>
+            <h2>Como podemos ajudar</h2>
             <p>
-              Não é necessário ter toda a arquitetura definida. Conte onde a
-              visibilidade falha hoje e quais decisões precisam acontecer mais
-              cedo, com mais contexto ou evidência.
+              Compartilhe sua necessidade e receba um retorno direcionado para
+              operações com alimentos perecíveis.
             </p>
             <div className="contact-list">
               <div>
-                <strong>Diagnóstico operacional</strong>
-                <span>
-                  Pontos críticos, produtos, rotas, ativos e responsáveis.
-                </span>
+                <strong>Parcerias</strong>
+                <span>Produtores, cooperativas e centros de distribuição.</span>
               </div>
               <div>
-                <strong>Arquitetura e integração</strong>
-                <span>
-                  Sensores, conectividade, dados, alertas e sistemas existentes.
-                </span>
+                <strong>Dúvidas técnicas</strong>
+                <span>Sensores, alertas, rastreabilidade e relatórios.</span>
               </div>
               <div>
-                <strong>Escala e governança</strong>
+                <strong>Implantação operacional</strong>
                 <span>
-                  Critérios de avanço, indicadores, perfis de acesso e melhoria
-                  contínua.
+                  Diagnóstico de cadeia fria, prioridades e indicadores.
                 </span>
               </div>
             </div>
@@ -94,26 +88,27 @@ export function ContactForm() {
               aria-label="Indicadores de atendimento"
             >
               <div>
-                <span>Abordagem</span>
-                <strong>consultiva</strong>
+                <span>Retorno</span>
+                <strong>até 2 dias</strong>
               </div>
               <div>
-                <span>Escopo</span>
-                <strong>ponta a ponta</strong>
+                <span>Foco</span>
+                <strong>operação real</strong>
               </div>
             </div>
           </aside>
           <form
+            id="formContato"
             className="contact-form card reveal"
             noValidate
             onSubmit={submit}
           >
             <div className="form-head">
-              <span className="tag">Conte seu cenário</span>
-              <h2>Fale com a FreshSense</h2>
+              <span className="tag">Mensagem</span>
+              <h2>Envie sua solicitação</h2>
               <p>
-                Quanto mais contexto você compartilhar, mais objetiva será a
-                primeira conversa.
+                Preencha os dados principais para que a equipe FreshSense
+                entenda seu contexto.
               </p>
             </div>
             <div className="form-grid">
@@ -121,12 +116,15 @@ export function ContactForm() {
                 <label htmlFor="nome">Nome completo</label>
                 <input
                   id="nome"
+                  name="nome"
                   type="text"
                   autoComplete="name"
                   placeholder="Ex.: Ana Silva"
                   className={fieldClass("nome")}
                   aria-invalid={Boolean(errors.nome)}
                   aria-describedby="nomeHint nomeErro"
+                  aria-required="true"
+                  required
                   value={data.nome}
                   onChange={(event) => update("nome", event.target.value)}
                 />
@@ -141,6 +139,7 @@ export function ContactForm() {
                 <label htmlFor="email">E-mail</label>
                 <input
                   id="email"
+                  name="email"
                   type="email"
                   inputMode="email"
                   autoComplete="email"
@@ -148,6 +147,8 @@ export function ContactForm() {
                   className={fieldClass("email")}
                   aria-invalid={Boolean(errors.email)}
                   aria-describedby="emailErro"
+                  aria-required="true"
+                  required
                   value={data.email}
                   onChange={(event) => update("email", event.target.value)}
                 />
@@ -179,10 +180,10 @@ export function ContactForm() {
                 onChange={(event) => update("assunto", event.target.value)}
               >
                 <option value="">Selecione uma opção</option>
-                <option>Diagnóstico da cadeia fria</option>
-                <option>Sensores e conectividade</option>
-                <option>Rastreabilidade e gestão de alertas</option>
-                <option>Implantação e integrações</option>
+                <option>Parceria ou projeto piloto</option>
+                <option>Dúvidas sobre sensores</option>
+                <option>Rastreabilidade e alertas</option>
+                <option>Relatórios e impacto social</option>
               </SelectField>
               <SelectField
                 id="operacao"
@@ -201,12 +202,15 @@ export function ContactForm() {
                 <label htmlFor="mensagem">Descrição da mensagem</label>
                 <textarea
                   id="mensagem"
+                  name="mensagem"
                   rows="6"
                   maxLength="500"
-                  placeholder="Descreva a operação, o principal ponto cego e a decisão que precisa melhorar"
+                  placeholder="Descreva sua dúvida, sugestão ou proposta"
                   className={fieldClass("mensagem")}
                   aria-invalid={Boolean(errors.mensagem)}
                   aria-describedby="mensagemErro contadorMensagem"
+                  aria-required="true"
+                  required
                   value={data.mensagem}
                   onChange={(event) => update("mensagem", event.target.value)}
                 />
@@ -218,13 +222,18 @@ export function ContactForm() {
                   >
                     {errors.mensagem}
                   </small>
-                  <small id="contadorMensagem" className="field-counter">
+                  <small
+                    id="contadorMensagem"
+                    className={`field-counter ${
+                      data.mensagem.length > 500 ? "limit-warning" : ""
+                    }`}
+                  >
                     {data.mensagem.length}/500 caracteres
                   </small>
                 </div>
               </div>
               <button className="btn-fresh btn-block" type="submit">
-                Solicitar contato
+                Enviar mensagem
               </button>
               <p
                 className={`status-message ${status.type ? `status-${status.type}` : ""}`}

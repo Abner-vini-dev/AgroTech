@@ -178,6 +178,11 @@
   resize: vertical;
 }
 
+.field-counter.limit-warning {
+  color: #9c3327;
+  font-weight: 900;
+}
+
 @media (max-width: 920px) {
   .contact-layout {
     grid-template-columns: 1fr;

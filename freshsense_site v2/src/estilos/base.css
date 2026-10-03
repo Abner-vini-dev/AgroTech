@@ -292,6 +292,36 @@ textarea:focus-visible {
   color: var(--deep);
 }
 
+.pitch-video-link {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+  border-radius: 999px;
+  padding: 6px 11px;
+  background: #ee302e;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 1000;
+  line-height: 1;
+  white-space: nowrap;
+  transform: translateY(-50%);
+  transition:
+    background 0.18s ease,
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.pitch-video-link:hover {
+  background: #d92525;
+  color: #fff;
+  transform: translateY(calc(-50% - 1px));
+  box-shadow: 0 12px 28px rgba(238, 48, 46, 0.3);
+}
+
 .search-button {
   min-height: 38px;
   border: 1px solid rgba(255, 255, 255, 0.28);
@@ -792,6 +822,10 @@ h3 {
     min-height: 48px;
   }
 
+  .pitch-video-link {
+    right: 116px;
+  }
+
   .search-panel {
     max-height: calc(100dvh - 32px);
     padding: 18px;
@@ -870,5 +904,14 @@ h3 {
   .footer-grid {
     align-items: start;
     flex-direction: column;
+  }
+}
+
+@media (max-width: 420px) {
+  .pitch-video-link {
+    right: 108px;
+    min-height: 30px;
+    padding-inline: 8px;
+    font-size: 0.68rem;
   }
 }

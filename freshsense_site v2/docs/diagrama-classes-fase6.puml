@@ -1,0 +1,52 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class Usuario {
+  - id: String
+  - nome: String
+  - email: String
+  + registrarDestinacao(): Destinacao
+  + atualizarStatus(): void
+}
+
+class Lote {
+  - id: String
+  - produto: String
+  - quantidade: Number
+  - unidade: String
+  - risco: String
+  - diasParaValidade: Number
+  + verificarDisponibilidade(): Boolean
+  + sugerirDestinacao(): String
+}
+
+class Destinacao {
+  - id: String
+  - tipo: String
+  - quantidade: Number
+  - dataRetirada: Date
+  - status: String
+  + validar(): Boolean
+  + avancarStatus(): void
+  + cancelar(): void
+}
+
+class Instituicao {
+  - id: String
+  - nome: String
+  - cidade: String
+  - tipo: String
+  + receberLote(): void
+}
+
+class HistoricoStatus {
+  - status: String
+  - data: DateTime
+  + registrarAlteracao(): void
+}
+
+Usuario "1" --> "0..*" Destinacao : registra
+Lote "1" --> "0..*" Destinacao : origina
+Instituicao "1" --> "0..*" Destinacao : recebe
+Destinacao "1" *-- "1..*" HistoricoStatus : mantém
+@enduml

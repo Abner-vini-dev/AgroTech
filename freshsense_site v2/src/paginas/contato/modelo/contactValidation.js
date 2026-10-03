@@ -10,11 +10,15 @@ export const emptyContactForm = {
 export function validateContact(values) {
   const errors = {};
   const parts = values.nome.trim().split(/\s+/).filter(Boolean);
-  const namePattern = /^[A-Za-zÀ-ÖØ-öø-ÿ'-]+$/;
+  const namePattern = /^[A-Za-zÀ-ÖØ-öø-ÿ]+(?:['-][A-Za-zÀ-ÖØ-öø-ÿ]+)*$/;
 
   if (!values.nome.trim()) errors.nome = "Informe seu nome completo.";
   else if (parts.length < 2) errors.nome = "Digite nome e sobrenome.";
-  else if (!parts.every((part) => namePattern.test(part) && part.length >= 2)) {
+  else if (
+    !parts.every(
+      (part) => namePattern.test(part) && part.replace(/['-]/g, "").length >= 2,
+    )
+  ) {
     errors.nome = "Nome e sobrenome precisam ter pelo menos 2 letras cada.";
   }
 

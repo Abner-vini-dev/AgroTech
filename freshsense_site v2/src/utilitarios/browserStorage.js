@@ -2,6 +2,7 @@ export const storageKeys = Object.freeze({
   favorites: "freshsense-favorites",
   language: "freshsense-language",
   monitoringRefreshRate: "freshsense-monitoring-refresh-rate",
+  destinations: "freshsense-destinations-v1",
   theme: "freshsense-theme",
 });
 

@@ -1,6 +1,8 @@
-# FreshSense — Fase 5 React
+# FreshSense — Fase 6 React
 
-Versão React construída sobre todo o conteúdo e identidade visual da Fase 4.
+Versão React construída sobre o projeto da Fase 5. A nova funcionalidade de
+Destinação Inteligente permite selecionar lotes em risco, validar a quantidade,
+registrar uma ação contra o desperdício e acompanhar seu status.
 
 ## Executar
 
@@ -44,5 +46,11 @@ npm.cmd run build
 
 Todo o comportamento da aplicação está em componentes, hooks e contextos React dentro de `src`.
 
-A descrição completa das responsabilidades e das rotas está em
-[`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
+## Nova funcionalidade da Fase 6
+
+- Doação, venda prioritária, desconto ou transferência de lotes.
+- Validações de quantidade, responsável, destino e data de retirada.
+- Sugestão automática de ação conforme risco e validade.
+- Histórico de status e atualização do volume destinado.
+- Persistência das destinações no armazenamento local do navegador.
+- Diagrama de classes em `docs/diagrama-classes-fase6.png`.
